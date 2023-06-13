@@ -2,40 +2,40 @@ CREATE SCHEMA esporte;
 use esporte;
 
 CREATE TABLE athletes (
-`name` VARCHAR(50) NOT NULL,
-noc VARCHAR(50) NOT NULL,
-discipline VARCHAR(50) NOT NULL
+`name` VARCHAR(50),
+noc VARCHAR(50),
+discipline VARCHAR(50)
 );
 
 CREATE TABLE coaches (
-`name` VARCHAR(50) NOT NULL,
-noc VARCHAR(50) NOT NULL,
-discipline VARCHAR(50) NOT NULL,
+`name` VARCHAR(50),
+noc VARCHAR(50),
+discipline VARCHAR(50),
 `event` VARCHAR(50)
 );
 
 CREATE TABLE entries_gender (
-discipline VARCHAR(50) NOT NULL,
-female INT NOT NULL,
-male INT NOT NULL,
-total INT NOT NULL
+discipline VARCHAR(50),
+female INT,
+male INT,
+total INT
 );
 
 CREATE TABLE medals (
-`rank` INT NOT NULL,
-team_noc VARCHAR(50) NOT NULL,
-gold INT NOT NULL,
-silver INT NOT NULL,
-bronze INT NOT NULL,
-total INT NOT NULL,
-rank_by_total INT NOT NULL
+`rank` INT,
+team_noc VARCHAR(50),
+gold INT,
+silver INT,
+bronze INT,
+total INT,
+rank_by_total INT
 );
 
 CREATE TABLE teams (
-`name` VARCHAR(50) NOT NULL,
-discipline VARCHAR(50) NOT NULL,
-noc VARCHAR(50) NOT NULL,
-`event` VARCHAR(50) NOT NULL
+`name` VARCHAR(50),
+discipline VARCHAR(50),
+noc VARCHAR(50),
+`event` VARCHAR(50)
 );
 
 SELECT * FROM athletes;
@@ -45,8 +45,9 @@ SELECT * FROM medals;
 SELECT * FROM teams;
 
 /* 1 */
-SELECT coaches.`name`, athletes.`name` FROM coaches INNER JOIN athletes ON coaches.discipline = athletes.discipline
-WHERE athletes.discipline = `Handball`;
+SELECT `name`, 'athletes' as tipo FROM athletes WHERE discipline = 'handball'
+UNION
+SELECT `name`, 'coaches' as tipo FROM coaches WHERE discipline = 'handball';
 
 /* 2 */
 /* Precisaria de um ID para relacionar eles. */
